@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:lshort/url_shortener_screen.dart';
+import 'package:lshort/url_shortner_state.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(
+      ChangeNotifierProvider(
+        child: MyApp(),
+        create: (context) => UrlShortenerState(),
+      ),
+    );
 
 class MyApp extends StatelessWidget {
   @override

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:lshort/url_shortner_state.dart';
+import 'package:provider/provider.dart';
 
 class UrlShortenerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final state = Provider.of<UrlShortenerState>(context, listen: true);
+
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(32),
@@ -28,6 +32,7 @@ class UrlShortenerScreen extends StatelessWidget {
               height: 32,
             ),
             TextField(
+              controller: state.urlController,
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -44,7 +49,9 @@ class UrlShortenerScreen extends StatelessWidget {
             Container(
               width: double.infinity,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  state.handleGetLinkButton();
+                },
                 child: Text(
                   "Shorten Link",
                   style: TextStyle(
@@ -56,6 +63,9 @@ class UrlShortenerScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                     horizontal: 16,
                     vertical: 16,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
                   ),
                 ),
               ),
